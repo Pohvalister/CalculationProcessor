@@ -2,6 +2,7 @@
 #define CONCURRENTLIST_H
 
 #include <QAtomicPointer>
+#include <iostream>
 
 template<typename TVal>
 class ConcurrentStack
@@ -27,6 +28,7 @@ public:
     {}
 
     void push(TVal value){
+        std::cout<<"\npush:"<<value<<'\n';
         Node* to_insert = new Node(value, head);
         while(!head.testAndSetOrdered(to_insert->next, to_insert))
             to_insert->next = head;
@@ -36,7 +38,7 @@ public:
         Node* to_erase;
         do{
             to_erase = head;
-            if (!to_erase){
+            if (to_erase == nullptr){
                 not_empty = false;
                 return 0;
             }
@@ -45,6 +47,7 @@ public:
         TVal pop_val= to_erase->val;
         not_empty = true;
         delete to_erase;
+        std::cout<<"\npop:"<<pop_val<<'\n';
         return pop_val;
     }
 };
