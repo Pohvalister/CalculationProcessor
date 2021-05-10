@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QRunnable>
 #include <QFile>
-#include <QAtomicInt>
 
 #include "concurrentlist.h"
 
@@ -22,9 +21,9 @@ public:
 
 public:
     FileReadingTask(const QString& filename, QVector<ConcurrentStack<int>*> stacks);
-    ~FileReadingTask();
 
     void run();
+
 signals:
     void readingFinished(int resultCode);
 

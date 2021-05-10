@@ -1,5 +1,6 @@
 #ifndef CALCULATINGTASKS_H
 #define CALCULATINGTASKS_H
+#include <iostream>
 
 #include <QObject>
 #include <QRunnable>
@@ -9,9 +10,11 @@
 template<typename TVal>
 class CalculatingTask : public QObject, public QRunnable
 {
+
 public:
     CalculatingTask(ConcurrentStack<TVal>* st, TVal (*func)(TVal, TVal))
-        : dataholder(st)
+        : QObject(NULL)
+        , dataholder(st)
         , operation(func)
         , output_value(0)
         , stop_flag(false), have_work(true)
@@ -21,13 +24,17 @@ public:
         while(!stop_flag || have_work){
             int new_value = dataholder->pop(have_work);
             output_value = operation(output_value, new_value);
+            std::cout<<new_value<<' ';
         }
     };
 
     TVal get_value(){return output_value;};
 
-private slots:
-    void onReadingFinished(int){stop_flag = true;}
+public:
+    void slot_onReadingFinished(int resultCode){
+        Q_UNUSED(resultCode);
+        stop_flag = true;
+    }
 
 private:
     ConcurrentStack<TVal>* dataholder;

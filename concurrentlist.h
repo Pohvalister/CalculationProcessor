@@ -14,8 +14,8 @@ private:
             , next(n)
         {}
 
-        Node* next;
         const TVal val;
+        Node* next;
     };
 
 
@@ -38,11 +38,11 @@ public:
             to_erase = head;
             if (!to_erase){
                 not_empty = false;
-                break;
+                return 0;
             }
         } while (!head.testAndSetOrdered(to_erase, to_erase->next));
 
-        TVal& pop_val= to_erase->val;
+        TVal pop_val= to_erase->val;
         not_empty = true;
         delete to_erase;
         return pop_val;
