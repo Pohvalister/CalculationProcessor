@@ -2,16 +2,18 @@
 
 #include <iostream>
 
-#include "taskmanager.h"
+#include "solvers.h"
 
 int main(int argc, char *argv[])
 {
-    //std::cout<<argc;
-    //QCoreApplication a(argc, argv);
-    TaskManager* solver = new TaskManager();
-    QString filename = "numbers_da_lightest.txt";
-    solver->start(filename);
 
-    //return a.exec();
+    if (argc != 2){
+        std::cerr << "Incorrect argument, usage:" << argv[0] << " INPUT_FILE\n";
+        return -1;
+    }
+
+    Solver* solver = new LongLongSolver();
+    solver->solve(argv[1]);
+
     return 0;
 }

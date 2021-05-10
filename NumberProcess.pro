@@ -10,7 +10,7 @@ CONFIG -= app_bundle
 SOURCES += \
         filereadingtask.cpp \
         main.cpp \
-        taskmanager.cpp
+        solvers.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -21,4 +21,4 @@ HEADERS += \
     calculatingtasks.h \
     concurrentlist.h \
     filereadingtask.h \
-    taskmanager.h
+    solvers.h

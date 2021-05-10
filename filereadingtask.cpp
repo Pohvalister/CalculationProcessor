@@ -2,7 +2,7 @@
 
 #include <QTextStream>
 
-FileReadingTask::FileReadingTask(const QString& filename, QVector<ConcurrentStack<int>*> stacks)
+FileReadingTask::FileReadingTask(const QString& filename, QVector<ConcurrentStack<long long int>*> stacks)
     : QObject(NULL)
     , m_file(filename)
     , dataholders(stacks)
@@ -22,11 +22,11 @@ void FileReadingTask::run(){
 
         bool flag;
         for (QString str : line_array){
-            int val = str.toInt(&flag);
+            long long int val = str.toLongLong(&flag);
 
             if (flag)
                 emit readingFinished(RESULT_FAILED_READ);
-            //data.push_back(str.toInt(&flag));
+
             for (auto holder : dataholders){
                 holder->push(val);
             }

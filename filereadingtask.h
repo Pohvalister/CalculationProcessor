@@ -7,7 +7,7 @@
 
 #include "concurrentlist.h"
 
-
+//Runnable class to read data from file
 class FileReadingTask : public QObject, public QRunnable
 {
     Q_OBJECT
@@ -20,7 +20,7 @@ public:
     };
 
 public:
-    FileReadingTask(const QString& filename, QVector<ConcurrentStack<int>*> stacks);
+    FileReadingTask(const QString& filename, QVector<ConcurrentStack<long long int>*> stacks);
 
     void run();
 
@@ -29,7 +29,7 @@ signals:
 
 private:
     QFile m_file;
-    QVector<ConcurrentStack<int>*> dataholders;
+    QVector<ConcurrentStack<long long int>*> dataholders;
 
 };
 

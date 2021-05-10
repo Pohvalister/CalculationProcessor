@@ -2,8 +2,8 @@
 #define CONCURRENTLIST_H
 
 #include <QAtomicPointer>
-#include <iostream>
 
+//Data structure, used for asynchronous access to data
 template<typename TVal>
 class ConcurrentStack
 {
@@ -26,14 +26,14 @@ public:
     ConcurrentStack()
         : head(nullptr)
     {}
-
+    //Push an item onto the top of stack
     void push(TVal value){
-        std::cout<<"\npush:"<<value<<'\n';
         Node* to_insert = new Node(value, head);
         while(!head.testAndSetOrdered(to_insert->next, to_insert))
             to_insert->next = head;
     }
 
+    //Remove and item from the top of stack if exist; writes in <not_empty> whether item existed
     TVal pop(bool & not_empty){
         Node* to_erase;
         do{
@@ -47,7 +47,6 @@ public:
         TVal pop_val= to_erase->val;
         not_empty = true;
         delete to_erase;
-        std::cout<<"\npop:"<<pop_val<<'\n';
         return pop_val;
     }
 };

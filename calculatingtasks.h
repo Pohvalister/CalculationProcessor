@@ -7,6 +7,7 @@
 
 #include "concurrentlist.h"
 
+//Runnable class to apply commutative function to items in <st>
 template<typename TVal>
 class CalculatingTask : public QObject, public QRunnable
 {
@@ -22,10 +23,9 @@ public:
 
     void run(){
         while(have_work){
-            std::cout<<"stop_flag"<<stop_flag<<' ';
             bool stack_not_empty;
             have_work = !stop_flag;
-            int new_value = dataholder->pop(stack_not_empty);
+            TVal new_value = dataholder->pop(stack_not_empty);
             have_work|=stack_not_empty;
             if (stack_not_empty){
                 output_value = operation(output_value, new_value);
