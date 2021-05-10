@@ -37,7 +37,7 @@
     return;
 }*/
 
-void LongLongSolver::solve(QString filename){
+QString LongLongSolver::solve(QString filename){
     QThreadPool::globalInstance()->setMaxThreadCount(_max_threads);
 
     ConcurrentStack<long long int>* XOR_stack = new ConcurrentStack<long long int>();
@@ -61,9 +61,8 @@ void LongLongSolver::solve(QString filename){
 
     QThreadPool::globalInstance()->waitForDone();
 
+    QString answer = QString::number(ADD_task1->get_value() + ADD_task2->get_value());
+    answer += (" " + QString::number(XOR_task->get_value()));
 
-    std::cout<<XOR_task->get_value()<<' ';
-    std::cout<<ADD_task1->get_value() + ADD_task2->get_value();
-
-    return;
+    return answer;
 }

@@ -1,6 +1,5 @@
 #ifndef CALCULATINGTASKS_H
 #define CALCULATINGTASKS_H
-#include <iostream>
 
 #include <QObject>
 #include <QRunnable>
@@ -27,10 +26,10 @@ public:
             have_work = !stop_flag;
             TVal new_value = dataholder->pop(stack_not_empty);
             have_work|=stack_not_empty;
-            if (stack_not_empty){
+
+            if (stack_not_empty)
                 output_value = operation(output_value, new_value);
-                std::cout<<new_value<<' ';
-            }
+
         }
     };
 
