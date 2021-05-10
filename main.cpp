@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     }
 
     Solver* solver = new LongLongSolver();
-    solver->solve(argv[1]);
+    std::cout<<(solver->solve(argv[1])).toStdString();
 
     return 0;
 }

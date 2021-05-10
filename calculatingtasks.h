@@ -12,12 +12,15 @@ class CalculatingTask : public QObject, public QRunnable
 {
 
 public:
-    CalculatingTask(ConcurrentStack<TVal>* st, TVal (*func)(TVal, TVal))
+    CalculatingTask(TVal& value, ConcurrentStack<TVal>* st, TVal (*func)(TVal, TVal))
         : QObject(NULL)
         , dataholder(st)
         , operation(func)
-        , output_value(0)
+        , output_value(value)
         , have_work(true)
+    {}
+
+    ~CalculatingTask()
     {}
 
     void run(){
@@ -33,7 +36,7 @@ public:
         }
     };
 
-    TVal get_value(){return output_value;};
+    //TVal get_value(){return output_value;};
 
 public:
     static bool stop_flag;
@@ -46,7 +49,7 @@ private:
     ConcurrentStack<TVal>* dataholder;
 
     std::function<TVal(TVal, TVal)> operation;
-    TVal output_value;
+    TVal& output_value;
 
     bool have_work;
 };

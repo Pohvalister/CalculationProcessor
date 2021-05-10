@@ -14,20 +14,20 @@ void FileReadingTask::run(){
         return;
     }
 
-    QVector<int> data;
+    //QVector<int> data;
 
     QTextStream in(&m_file);
     while(!in.atEnd()){
         QStringList line_array = in.readLine().split(" ");
 
         bool flag;
-        for (QString str : line_array){
+        for (const QString & str : qAsConst(line_array)){
             long long int val = str.toLongLong(&flag);
 
             if (flag)
                 emit readingFinished(RESULT_FAILED_READ);
 
-            for (auto holder : dataholders){
+            for (auto holder : qAsConst(dataholders)){
                 holder->push(val);
             }
         }

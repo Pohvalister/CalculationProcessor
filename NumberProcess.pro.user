@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.0, 2021-05-11T00:36:19. -->
+<!-- Written by QtCreator 4.13.0, 2021-05-11T02:03:03. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -325,7 +325,7 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/iivan/QtProjects/NumberProcess/NumberProcess.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/iivan/QtProjects/NumberProcess/NumberProcess.pro</value>
-    <value type="QString" key="RunConfiguration.Arguments">numbers_light.txt</value>
+    <value type="QString" key="RunConfiguration.Arguments">1.txt</value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>

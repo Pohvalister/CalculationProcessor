@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-static const int THREAD_COUNT = 3;
+static const int MAX_THREAD_COUNT = 3;
 
 //class to calculate values from given data
 class Solver : public QObject

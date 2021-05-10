@@ -41,11 +41,16 @@ private slots:
         Solver* target = new LongLongSolver();
         Solver* basic = new BasicSolver();
 
-        for (auto filename : filenames){
+
+        for (const auto &filename : qAsConst(filenames)){
+            std::cout << filename.toStdString() <<'\n';
             QCOMPARE(target->solve(filename), basic->solve(filename));
         }
         std::cout<<target->solve(filenames[3]).toStdString()<<std::endl;
         std::cout<<target->solve(filenames[4]).toStdString()<<std::endl;//first_4  = first_3 * 143/13; second_3 value = second_4
+
+        delete target;
+        delete basic;
     }
     void timings(){
         Solver* target = new LongLongSolver();
@@ -56,6 +61,9 @@ private slots:
 
         std::cout << "Target:\n";
         benchmark(20, [&target](QString str){target->solve(str);}, filenames[5]);
+
+        delete target;
+        delete basic;
     }
 
 };

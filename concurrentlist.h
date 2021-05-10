@@ -3,6 +3,8 @@
 
 #include <QAtomicPointer>
 
+#include <iostream>
+
 //Data structure, used for asynchronous access to data
 template<typename TVal>
 class ConcurrentStack
@@ -10,12 +12,12 @@ class ConcurrentStack
 private:
 
     struct Node{
-        Node(TVal v, Node* n)
+        Node(TVal  v, Node* n)
             : val(v)
             , next(n)
         {}
 
-        const TVal val;
+        TVal  val;
         Node* next;
     };
 
@@ -28,6 +30,7 @@ public:
     {}
     //Push an item onto the top of stack
     void push(TVal value){
+        //std::cout<<"push:"<<value<<'\n';
         Node* to_insert = new Node(value, head);
         while(!head.testAndSetOrdered(to_insert->next, to_insert))
             to_insert->next = head;
@@ -47,6 +50,7 @@ public:
         TVal pop_val= to_erase->val;
         not_empty = true;
         delete to_erase;
+        //std::cout<<"pop:"<<pop_val<<'\n';
         return pop_val;
     }
 };
