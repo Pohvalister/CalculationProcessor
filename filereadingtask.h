@@ -5,7 +5,7 @@
 #include <QRunnable>
 #include <QFile>
 
-#include "concurrentlist.h"
+#include "concurrentstack.h"
 
 //Runnable class to read data from file
 class FileReadingTask : public QObject, public QRunnable

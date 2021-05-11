@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QRunnable>
 
-#include "concurrentlist.h"
+#include "concurrentstack.h"
 
 //Runnable class to apply commutative function to items in <st>
 template<typename TVal>

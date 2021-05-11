@@ -22,6 +22,6 @@ HEADERS += \
     basic_solver.h \
     solvertest.h \
     ../calculatingtasks.h \
-    ../concurrentlist.h \
+    ../concurrentstack.h \
     ../filereadingtask.h \
     ../solvers.h

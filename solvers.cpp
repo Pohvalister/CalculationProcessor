@@ -2,12 +2,14 @@
 
 #include "filereadingtask.h"
 #include "calculatingtasks.h"
-#include "concurrentlist.h"
+#include "concurrentstack.h"
 
 
 QString LongLongSolver::solve(QString filename){
     typedef long long int ll;
-    QThreadPool::globalInstance()->setMaxThreadCount(MAX_THREAD_COUNT + 1);
+    QThreadPool::globalInstance()->setMaxThreadCount(MAX_THREAD_COUNT);
+
+
 
     ConcurrentStack<QString> XOR_stack = ConcurrentStack<QString>();
     ConcurrentStack<QString> ADD_stack = ConcurrentStack<QString>();

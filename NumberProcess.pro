@@ -19,6 +19,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     calculatingtasks.h \
-    concurrentlist.h \
+    concurrentstack.h \
     filereadingtask.h \
     solvers.h

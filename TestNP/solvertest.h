@@ -56,11 +56,21 @@ private slots:
         Solver* target = new LongLongSolver();
         Solver* basic = new BasicSolver();
 
+        std::cout << "10.3M file\n";
         std::cout << "Basic:\n";
         benchmark(20, [&basic](QString str){basic->solve(str);}, filenames[5]);
 
         std::cout << "Target:\n";
         benchmark(20, [&target](QString str){target->solve(str);}, filenames[5]);
+
+        /*std::cout << "41.0M file\n";
+        std::cout << "Basic:\n";
+        benchmark(20, [&basic](QString str){basic->solve(str);}, "samples/data.txt");
+
+        std::cout << "Target:\n";
+        benchmark(20, [&target](QString str){target->solve(str);}, "samples/data.txt");
+*/
+
 
         delete target;
         delete basic;
