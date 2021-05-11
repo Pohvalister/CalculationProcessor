@@ -33,6 +33,8 @@ QString LongLongSolver::solve(QString filename){
 
     QThreadPool::globalInstance()->waitForDone();
 
+    CalculatingTask<ll>::restoreFlag();
+
 
     QString answer = QString::number(ADD_val1 + ADD_val2);
     answer += (" " + QString::number(XOR_val));

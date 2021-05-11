@@ -24,8 +24,6 @@ void FileReadingTask::run(){
         for (const QString & str : qAsConst(line_array)){
             long long int val = str.toLongLong(&flag);
 
-            if (flag)
-                emit readingFinished(RESULT_FAILED_READ);
 
             for (auto holder : qAsConst(dataholders)){
                 holder->push(val);

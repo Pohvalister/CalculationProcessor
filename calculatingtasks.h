@@ -28,7 +28,7 @@ public:
             bool stack_not_empty;
             have_work = !stop_flag;
             TVal new_value = dataholder->pop(stack_not_empty);
-            have_work|=stack_not_empty;
+            have_work = stack_not_empty || have_work;
 
             if (stack_not_empty)
                 output_value = operation(output_value, new_value);
@@ -40,6 +40,10 @@ public:
 
 public:
     static bool stop_flag;
+
+    static void restoreFlag(){
+        stop_flag = false;
+    }
 
     static void onReadingFinished(){
         stop_flag = true;

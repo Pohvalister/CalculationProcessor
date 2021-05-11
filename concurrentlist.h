@@ -12,7 +12,7 @@ class ConcurrentStack
 private:
 
     struct Node{
-        Node(TVal  v, Node* n)
+        Node(TVal v, Node* n)
             : val(v)
             , next(n)
         {}
@@ -32,8 +32,10 @@ public:
     void push(TVal value){
         //std::cout<<"push:"<<value<<'\n';
         Node* to_insert = new Node(value, head);
-        while(!head.testAndSetOrdered(to_insert->next, to_insert))
+        do{
             to_insert->next = head;
+        }
+        while(!head.testAndSetOrdered(to_insert->next, to_insert));
     }
 
     //Remove and item from the top of stack if exist; writes in <not_empty> whether item existed
