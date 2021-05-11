@@ -20,4 +20,5 @@ void FileReadingTask::run(){
 
     }
     emit readingFinished();
+
 }

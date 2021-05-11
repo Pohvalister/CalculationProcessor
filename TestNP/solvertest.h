@@ -63,13 +63,13 @@ private slots:
         std::cout << "Target:\n";
         benchmark(20, [&target](QString str){target->solve(str);}, filenames[5]);
 
-        /*std::cout << "\n41.0M file\n";
+        std::cout << "\n147.0M file\n";
         std::cout << "Basic:\n";
         benchmark(20, [&basic](QString str){basic->solve(str);}, "samples/data.txt");
 
         std::cout << "Target:\n";
         benchmark(20, [&target](QString str){target->solve(str);}, "samples/data.txt");
-*/
+
 
 
         delete target;

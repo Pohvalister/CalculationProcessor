@@ -25,8 +25,8 @@ QString LongLongSolver::solve(QString filename){
     data_file.close();
 
 
-    ConcurrentStack<QString> XOR_stack = ConcurrentStack<QString>();
-    ConcurrentStack<QString> ADD_stack = ConcurrentStack<QString>();
+    ConcurrentStack<QString> XOR_stack;
+    ConcurrentStack<QString> ADD_stack;
 
     if (!data_file.open(QIODevice::ReadOnly)){
         return "";

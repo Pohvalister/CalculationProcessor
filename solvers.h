@@ -13,14 +13,10 @@ class Solver : public QObject
 
 public:
 
-    virtual int maxThreads(){return _max_threads;}
-    virtual void setMaxThreads(int num){_max_threads = num;}
 
     virtual QString solve(QString filename) = 0;
 
 
-protected:
-    int _max_threads;
 };
 
 
