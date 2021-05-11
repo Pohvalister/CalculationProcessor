@@ -30,7 +30,7 @@ public:
     {}
     //Push an item onto the top of stack
     void push(TVal value){
-        //std::cout<<"push:"<<value<<'\n';
+        //std::cout<<"push:"<<value.toStdString()<<'\n';
         Node* to_insert = new Node(value, head);
         do{
             to_insert->next = head;
@@ -52,7 +52,7 @@ public:
         TVal pop_val= to_erase->val;
         not_empty = true;
         delete to_erase;
-        //std::cout<<"pop:"<<pop_val<<'\n';
+        //std::cout<<"pop:"<<pop_val.toStdString()<<'\n';
         return pop_val;
     }
 };

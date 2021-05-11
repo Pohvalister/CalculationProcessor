@@ -9,15 +9,15 @@ QString LongLongSolver::solve(QString filename){
     typedef long long int ll;
     QThreadPool::globalInstance()->setMaxThreadCount(MAX_THREAD_COUNT + 1);
 
-    ConcurrentStack<ll> XOR_stack = ConcurrentStack<ll>();
-    ConcurrentStack<ll> ADD_stack = ConcurrentStack<ll>();
+    ConcurrentStack<QString> XOR_stack = ConcurrentStack<QString>();
+    ConcurrentStack<QString> ADD_stack = ConcurrentStack<QString>();
     ll XOR_val=0, ADD_val1=0, ADD_val2=0;
 
-    CalculatingTask<ll>* XOR_task = new CalculatingTask<ll>(XOR_val, &XOR_stack, [](ll a, ll b){return a^b;});
-    CalculatingTask<ll>* ADD_task1 = new CalculatingTask<ll>(ADD_val1, &ADD_stack, [](ll a, ll b){return a+b;});
-    CalculatingTask<ll>* ADD_task2 = new CalculatingTask<ll>(ADD_val2, &ADD_stack, [](ll a, ll b){return a+b;});
+    CalculatingTask<ll>* XOR_task = new CalculatingTask<ll>(XOR_val, &XOR_stack, [](ll a, ll b){return a^b;}, [](QString str){return str.toLongLong();});
+    CalculatingTask<ll>* ADD_task1 = new CalculatingTask<ll>(ADD_val1, &ADD_stack, [](ll a, ll b){return a+b;}, [](QString str){return str.toLongLong();});
+    CalculatingTask<ll>* ADD_task2 = new CalculatingTask<ll>(ADD_val2, &ADD_stack, [](ll a, ll b){return a+b;}, [](QString str){return str.toLongLong();});
 
-    QVector<ConcurrentStack<ll>*> stack_vector;
+    QVector<ConcurrentStack<QString>*> stack_vector;
     stack_vector.push_back(&XOR_stack);
     stack_vector.push_back(&ADD_stack);
     FileReadingTask* fr_task = new FileReadingTask (filename, stack_vector);

@@ -12,10 +12,11 @@ class CalculatingTask : public QObject, public QRunnable
 {
 
 public:
-    CalculatingTask(TVal& value, ConcurrentStack<TVal>* st, TVal (*func)(TVal, TVal))
+    CalculatingTask(TVal& value, ConcurrentStack<QString>* st, TVal (*oper)(TVal, TVal), TVal (*conv)(QString))
         : QObject(NULL)
         , dataholder(st)
-        , operation(func)
+        , operation(oper)
+        , conversion(conv)
         , output_value(value)
         , have_work(true)
     {}
@@ -27,16 +28,23 @@ public:
         while(have_work){
             bool stack_not_empty;
             have_work = !stop_flag;
-            TVal new_value = dataholder->pop(stack_not_empty);
+            QString new_values = dataholder->pop(stack_not_empty);
             have_work = stack_not_empty || have_work;
 
-            if (stack_not_empty)
-                output_value = operation(output_value, new_value);
+            if (stack_not_empty){
+
+                QStringList line_array = new_values.split(" ");
+
+                for (const QString & str : qAsConst(line_array)){
+                    TVal new_value = conversion(str);
+                    output_value = operation(output_value, new_value);
+
+                }
+            }
 
         }
     };
 
-    //TVal get_value(){return output_value;};
 
 public:
     static bool stop_flag;
@@ -50,9 +58,10 @@ public:
     }
 
 private:
-    ConcurrentStack<TVal>* dataholder;
+    ConcurrentStack<QString>* dataholder;
 
     std::function<TVal(TVal, TVal)> operation;
+    std::function<TVal(QString)> conversion;
     TVal& output_value;
 
     bool have_work;

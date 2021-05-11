@@ -20,7 +20,7 @@ public:
     };
 
 public:
-    FileReadingTask(const QString& filename, QVector<ConcurrentStack<long long int>*> stacks);
+    FileReadingTask(const QString& filename, QVector<ConcurrentStack<QString>*> stacks);
 
     void run();
 
@@ -29,7 +29,7 @@ signals:
 
 private:
     QFile m_file;
-    QVector<ConcurrentStack<long long int>*> dataholders;
+    QVector<ConcurrentStack<QString>*> dataholders;
 
 };
 
