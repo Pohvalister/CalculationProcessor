@@ -27,7 +27,7 @@ class BasicSolver : public Solver{
             XOR_answ ^= val;
             ADD_answ += val;
         }
-        QString answer = QString::number(ADD_answ) + ' ' + QString::number(XOR_answ);
+        QString answer = QString::number(ADD_answ) + ' ' + QString::number(SUB_answ) + ' ' + QString::number(XOR_answ);
         return answer;
     }
 };

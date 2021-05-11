@@ -47,7 +47,7 @@ private slots:
             QCOMPARE(target->solve(filename), basic->solve(filename));
         }
         std::cout<<target->solve(filenames[3]).toStdString()<<std::endl;
-        std::cout<<target->solve(filenames[4]).toStdString()<<std::endl;//first_4  = first_3 * 143/13; second_3 value = second_4
+        std::cout<<target->solve(filenames[4]).toStdString()<<std::endl;
 
         delete target;
         delete basic;
@@ -56,14 +56,14 @@ private slots:
         Solver* target = new LongLongSolver();
         Solver* basic = new BasicSolver();
 
-        std::cout << "10.3M file\n";
+        std::cout << "\n10.3M file\n";
         std::cout << "Basic:\n";
         benchmark(20, [&basic](QString str){basic->solve(str);}, filenames[5]);
 
         std::cout << "Target:\n";
         benchmark(20, [&target](QString str){target->solve(str);}, filenames[5]);
 
-        /*std::cout << "41.0M file\n";
+        /*std::cout << "\n41.0M file\n";
         std::cout << "Basic:\n";
         benchmark(20, [&basic](QString str){basic->solve(str);}, "samples/data.txt");
 

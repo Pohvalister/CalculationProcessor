@@ -13,22 +13,15 @@ class FileReadingTask : public QObject, public QRunnable
     Q_OBJECT
 
 public:
-    enum ResultCode{
-        RESULT_SUCCESS,
-        RESULT_FAILED_OPEN,
-        RESULT_FAILED_READ
-    };
-
-public:
-    FileReadingTask(const QString& filename, QVector<ConcurrentStack<QString>*> stacks);
+    FileReadingTask(QFile* file, QVector<ConcurrentStack<QString>*> stacks);
 
     void run();
 
 signals:
-    void readingFinished(int resultCode);
+    void readingFinished();
 
 private:
-    QFile m_file;
+    QFile* m_file;
     QVector<ConcurrentStack<QString>*> dataholders;
 
 };

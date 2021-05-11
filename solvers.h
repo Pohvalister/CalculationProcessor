@@ -3,8 +3,6 @@
 
 #include <QtCore/QThreadPool>
 
-#include <iostream>
-
 
 static const int MAX_THREAD_COUNT = 3;
 
@@ -20,21 +18,19 @@ public:
 
     virtual QString solve(QString filename) = 0;
 
-    //virtual void print_solve(QString filename) {std::cout<<solve(filename);}
-
 
 protected:
     int _max_threads;
 };
 
-//Class to use int types for data evaluation
-class IntegerSolver : public Solver{
-    QString solve(QString filename);
-};
 
 //Class to use long long int types for data evaluation
 class LongLongSolver : public Solver{
     QString solve(QString filename);
+
+private:
+    typedef long long int ll;
+    static ll convert(QString str);
 };
 
 
